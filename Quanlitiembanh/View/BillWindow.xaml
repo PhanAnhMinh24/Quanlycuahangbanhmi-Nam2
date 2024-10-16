@@ -1,0 +1,81 @@
+﻿<Window x:Class="Quanlitiembanh.View.BillWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Quanlitiembanh.View"
+        mc:Ignorable="d"
+        xmlns:uc="clr-namespace:Quanlitiembanh.UserControlPAM"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        xmlns:media="clr-namespace:System.Windows.Media;assembly=PresentationCore"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        x:Name="billWindow"
+        Loaded="formBillWindow_Loaded"
+        DataContext="{StaticResource MainVM}"
+        Title="Hóa đơn" Height="800" Width="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=window}" ></uc:ControlBarUC>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            
+            <TextBox
+                        x:Name="txtId" 
+                    Text="{Binding ElementName=dataHoadon, Path=SelectedItem.idhoadon}"
+                       />
+
+            <materialDesign:Card Grid.Row="1" Margin="5">
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Button Content="Thêm"  Width="100" Command="{Binding BillView}" Margin="48,0,49,0" Click="Them_Bill"></Button>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Button x:Name="btnXoa" Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="48,0,49,0" Click="btnXoa_Click" />
+                    </Grid>
+                </Grid>
+            </materialDesign:Card>
+
+            <DataGrid x:Name="dataHoadon"
+                      Grid.Row="3"
+                      Margin="5"
+                      ItemsSource="{Binding List}"
+                      SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}"
+                      AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn  Header="Mã hóa đơn" Binding="{Binding idhoadon}"/>
+                    <DataGridTextColumn Header="Tên khách hàng" Binding="{Binding tenkhachhang}"/>
+                    <DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding tensanpham}"/>
+                    <DataGridTextColumn Header="Số lượng" Binding="{Binding soluong}"/>
+                    <DataGridTextColumn  Header="Giá tiền" Binding="{Binding tongtien}"/>
+                    <DataGridTextColumn Header="Ngày thêm" Binding="{Binding ngaythem}"/>
+                    
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+
+</Window>

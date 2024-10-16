@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Quanlitiembanhmi" Class="QuanlitiembanhDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-13UCEGF\SQLEXPRESS;Initial Catalog=Quanlitiembanhmi;Integrated Security=True" SettingsObjectName="Quanlitiembanh.Properties.Settings" SettingsPropertyName="QuanlitiembanhmiConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.hoadon" Member="hoadons">
+    <Type Name="hoadon">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tenkhachhang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="sdtkhachhang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="magiamgia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_sanpham" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tongtien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ngaythem" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="voucher_hoadon" Member="voucher" ThisKey="magiamgia" OtherKey="id" Type="voucher" IsForeignKey="true" />
+      <Association Name="sanpham_hoadon" Member="sanpham" ThisKey="id_sanpham" OtherKey="id" Type="sanpham" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.voucher" Member="vouchers">
+    <Type Name="voucher">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tenvoucher" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="mavoucher" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ngaybatdau" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngayketthuc" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="hoadontoithieu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="giamgiatoida" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ngaythem" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="voucher_hoadon" Member="hoadons" ThisKey="id" OtherKey="magiamgia" Type="hoadon" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sanpham" Member="sanphams">
+    <Type Name="sanpham">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tensanpham" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="giatien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mota" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="hinhanh" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ngaythem" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="sanpham_hoadon" Member="hoadons" ThisKey="id" OtherKey="id_sanpham" Type="hoadon" />
+    </Type>
+  </Table>
+  <Table Name="dbo.users" Member="users">
+    <Type Name="user">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tendangnhap" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="matkhau" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="tenhienthi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ngaytao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.chitietsanpham" Method="chitietsanpham">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="chitietsanphamResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tensanpham" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="giatien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mota" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="hinhanh" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ngaythem" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.xoasanpham" Method="xoasanpham">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.kiemtravoucher" Method="kiemtravoucher">
+    <Parameter Name="voucher" Type="System.String" DbType="VarChar(255)" />
+    <ElementType Name="kiemtravoucherResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tenvoucher" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="mavoucher" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ngaybatdau" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngayketthuc" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="hoadontoithieu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="giamgiatoida" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ngaythem" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.laydanhsachsanpham" Method="laydanhsachsanpham">
+    <ElementType Name="laydanhsachsanphamResult">
+      <Column Name="stt" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tensanpham" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="giatien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mota" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="hinhanh" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ngaythem" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.suasanpham" Method="suasanpham">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="tensanpham" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="giatien" Type="System.Double" DbType="Float" />
+    <Parameter Name="mota" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="soluong" Type="System.Int32" DbType="Int" />
+    <Parameter Name="hinhanh" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.taohoadon" Method="taohoadon">
+    <Parameter Name="tenkhachhang" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="sdtkhachhang" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="magiamgia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="id_sanpham" Type="System.Int32" DbType="Int" />
+    <Parameter Name="soluong" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ngaythem" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="tongtien" Type="System.Double" DbType="Float" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.themsanpham" Method="themsanpham">
+    <Parameter Name="tensanpham" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="giatien" Type="System.Double" DbType="Float" />
+    <Parameter Name="mota" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="hinhanh" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="soluong" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ngaythem" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.themvoucher" Method="themvoucher">
+    <Parameter Name="tenvoucher" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="mavoucher" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="hoadontoithieu" Type="System.Double" DbType="Float" />
+    <Parameter Name="giamgiatoida" Type="System.Double" DbType="Float" />
+    <Parameter Name="ngaybatdau" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ngayketthuc" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ngaythem" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.timsanpham" Method="timsanpham">
+    <Parameter Name="tim" Type="System.String" DbType="NVarChar(255)" />
+    <ElementType Name="timsanphamResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tensanpham" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="giatien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mota" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="hinhanh" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ngaythem" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.xoahoadon" Method="xoahoadon">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.xoavoucher" Method="xoavoucher">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.suavoucher" Method="suavoucher">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="tenvoucher" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="mavoucher" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="ngaybatdau" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ngayketthuc" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="hoadontoithieu" Type="System.Double" DbType="Float" />
+    <Parameter Name="giamgiatoida" Type="System.Double" DbType="Float" />
+    <Parameter Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.timvoucher" Method="timvoucher">
+    <Parameter Name="tim" Type="System.String" DbType="NVarChar(255)" />
+    <ElementType Name="timvoucherResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tenvoucher" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="mavoucher" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ngaybatdau" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngayketthuc" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="hoadontoithieu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="giamgiatoida" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ngaythem" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.laytatcahoadon" Method="laytatcahoadon">
+    <ElementType Name="laytatcahoadonResult">
+      <Column Name="idhoadon" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tenkhachhang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="sdtkhachhang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="magiamgia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_sanpham" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tongtien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ngaythem" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="id1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tensanpham" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="giatien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mota" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="hinhanh" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ngaythem1" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngaycapnhat1" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="soluong1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tenvoucher" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="mavoucher" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ngaybatdau" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngayketthuc" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="hoadontoithieu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="giamgiatoida" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ngaythem2" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngaycapnhat2" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.laydulieuvoucher" Method="laydulieuvoucher">
+    <ElementType Name="laydulieuvoucherResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tenvoucher" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="mavoucher" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ngaybatdau" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngayketthuc" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="hoadontoithieu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="giamgiatoida" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ngaythem" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.dangkytaikhoan" Method="dangkytaikhoan">
+    <Parameter Name="tendangnhap" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="matkhau" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="tenhienthi" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="ngaytao" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

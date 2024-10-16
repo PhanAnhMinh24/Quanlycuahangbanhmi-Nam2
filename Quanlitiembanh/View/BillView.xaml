@@ -1,0 +1,161 @@
+﻿<Window x:Class="Quanlitiembanh.View.BillView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Quanlitiembanh.View"
+        mc:Ignorable="d"
+        xmlns:uc="clr-namespace:Quanlitiembanh.UserControlPAM"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        xmlns:media="clr-namespace:System.Windows.Media;assembly=PresentationCore"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Name="billWindow"
+         Loaded="form_Bill_Loaded"
+        DataContext="{StaticResource MainVM}"
+        Title="Bill" Height="900" Width="600">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=billWindow}" ></uc:ControlBarUC>
+        </Grid>
+        <Grid Grid.Row="1">
+            <materialDesign:Card Grid.Row="1" Width="600" Height="900" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="Grid">
+                            <Setter Property="Margin" Value="10 0 10 0"></Setter>
+                        </Style>
+
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition ></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <TextBlock Text="Hóa đơn"
+                    Foreground="LightSlateGray"
+                    FontSize="24"
+                    FontFamily="Montserrat"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+                    </Grid>
+                    <Grid Grid.Row ="1" Margin="10,10,0,0">
+                        <TextBox x:Name="txtTenKH"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Tên khách hàng"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,0,10,0" />
+                    </Grid>
+                    <Grid Grid.Row ="2"  Margin="10,10,0,0">
+                        <TextBox x:Name="txtSDT"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Số điên thoại khách hàng"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,0,10,0" />
+                    </Grid>
+                    <Grid Grid.Row ="3">
+                        <TextBox x:Name="txtVoucher"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Mã giảm giá"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,0,10,0" />
+                    </Grid>
+                    <Grid Grid.Row ="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <ComboBox x:Name="cboSanPham"
+                                materialDesign:HintAssist.IsFloating="true" 
+                                Style="{StaticResource MaterialDesignOutlinedComboBox}"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <TextBox x:Name="txtSoLuong"
+                        VerticalAlignment="Top"
+                        materialDesign:HintAssist.Hint="Số lượng"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="13,48,20,0" />
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row ="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Button x:Name="btnTamTinh"
+                        Content="Tạm tính"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignPaperLightButton}"
+                        ToolTip="Tính tiền"   Margin="0,64,90,10" Click="btnTamTinh_Click" />
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <TextBlock
+                                    Text="Thành tiền:"
+                                    FontFamily="Century gothic"
+                                    FontSize="16" Margin="-81,67,83,-68"
+                                    />
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <TextBox x:Name="txtTongTien"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="0 VND"
+                                    AcceptsReturn="True"
+                                    IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                    TextWrapping="Wrap"
+                                    VerticalScrollBarVisibility="Auto" Margin="-86,54,-14,0"  />
+                            </Grid>
+
+                        </Grid>
+
+                    </Grid>
+                    <Grid Grid.Row="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0"
+                                x:Name="btnTinhTien"
+                          Content="Tính tiền"
+                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                          Style="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}"
+                          ToolTip="Resource name:MaterialDesignFlatSecondaryDarkBgButton" Margin="10,24,0,24" Click="btnTinhTien_Click"  />
+                        <Button Grid.Column="1"                         
+                          Content="Quay lại"
+                                x:Name="btnQuaylai"
+                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                          Style="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}"
+                          ToolTip="Resource name: MaterialDesignFlatSecondaryDarkBgButton" Margin="10,24,0,24" Click="btnQuaylai_Click"  />
+                    </Grid>
+
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+    </Grid>
+</Window>

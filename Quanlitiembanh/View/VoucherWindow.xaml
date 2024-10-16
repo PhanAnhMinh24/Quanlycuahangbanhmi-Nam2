@@ -1,0 +1,180 @@
+﻿<Window x:Class="Quanlitiembanh.View.VoucherWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Quanlitiembanh.View"
+        mc:Ignorable="d"
+        xmlns:uc="clr-namespace:Quanlitiembanh.UserControlPAM"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        xmlns:media="clr-namespace:System.Windows.Media;assembly=PresentationCore"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        x:Name="voucher"
+        DataContext="{StaticResource MainVM}"
+        Title="Voucher" Height="800" Width="1100"
+        Loaded="form_Voucher_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=window}" ></uc:ControlBarUC>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <materialDesign:Card Grid.Row="0" Margin="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Button Style="{DynamicResource MaterialDesignToolButton}" 
+                            Width="50" HorizontalAlignment="Left" 
+                            x:Name="btntimkiem" Click="timkiem_voucher">
+                            <materialDesign:PackIcon Kind="Magnify" Opacity=".56"/>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <TextBox
+                        Margin="-420,-7,-30,0"
+                        VerticalAlignment="Top"
+                        x:Name="txtTimKiem"
+                        materialDesign:HintAssist.Hint="Tìm kiếm voucher"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"  />
+                    </Grid>
+                </Grid>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Row="1" Margin="5">
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Button Command="{Binding VoucherView}" Content="Thêm"  Width="100"  Margin="48,-5,49,5" Click="Them_voucher"></Button>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Button Command="{Binding DeleteCommand}" Content="Xóa" Width="100" Margin="48,-5,49,5" Click="Xoa_voucher"/>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <Button Command="{Binding FixCommand}" Content="Sửa" Width="100"  Margin="48,-5,49,5" />
+                    </Grid>
+                </Grid>
+            </materialDesign:Card>
+
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox
+                            x:Name="txtId_voucher"
+                        Text="{Binding ElementName=datavoucher, Path=SelectedItem.id}"
+                            Visibility="Collapsed"/>
+                    <Grid Grid.Column="0" Margin="10 0 0 0">
+                        <TextBox
+                            x:Name="txtTenvoucher"
+                        VerticalAlignment="Center"
+                            Text="{Binding ElementName=datavoucher, Path=SelectedItem.tenvoucher}"
+                        materialDesign:HintAssist.Hint="Tên voucher"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,0,10,0" />
+                    </Grid>
+                    <Grid Grid.Column="1" Margin="10 0 0 0">
+                        <TextBox
+                             x:Name="txtMavoucher" Text="{Binding ElementName=datavoucher, Path=SelectedItem.mavoucher}"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Mã giảm giá"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,0,10,0" />
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        
+                    </Grid.ColumnDefinitions>
+                    
+                    <Grid Grid.Column="0">
+                        <DatePicker
+                                x:Name="txtNgaybatdau" Text="{Binding ElementName=datavoucher, Path=SelectedItem.ngaybatdau}"
+                                materialDesign:HintAssist.Hint="Ngày bắt đầu"
+                                 Style="{StaticResource MaterialDesignOutlinedDatePicker}" Margin="40,12,30,0" VerticalAlignment="Top"  />
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <DatePicker
+                                x:Name="txtNgayketthuc" Text="{Binding ElementName=datavoucher, Path=SelectedItem.ngayketthuc}"
+                                materialDesign:HintAssist.Hint="Ngày kết thúc"
+                                 Style="{StaticResource MaterialDesignOutlinedDatePicker}" Margin="40,12,30,0" VerticalAlignment="Top"  />
+                    </Grid>
+
+                </Grid>
+                <Grid Grid.Row="2"  Margin="10 0 0 0">
+                    <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <TextBox
+                            x:Name="txtHoadontt" Text="{Binding ElementName=datavoucher, Path=SelectedItem.ngaythem}"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Hóa đơn tối thiểu"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Margin="10,0,10,0" />
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <TextBox
+                            x:Name="txtGiamgiatd" Text="{Binding ElementName=datavoucher, Path=SelectedItem.ngaycapnhat}"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Giảm giá tối đa"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Margin="10,0,10,0" />
+                    </Grid>
+                </Grid>
+            </Grid>
+            <DataGrid x:Name="datavoucher"
+                      Grid.Row="3"
+                      Margin="5"
+                      ItemsSource="{Binding List}"
+                      SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}"
+                      AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Mã sản phẩm" Binding="{Binding id}"/>
+                    <DataGridTextColumn Header="Tên voucher" Binding="{Binding tenvoucher}"/>
+                    <DataGridTextColumn Header="Mã giảm giá " Binding="{Binding mavoucher}"/>
+                    <DataGridTextColumn Header="Hóa đơn tối thiểu " Binding="{Binding hoadontoithieu}"/>
+                    <DataGridTextColumn Header="Giảm giá tối đa" Binding="{Binding giamgiatoida}"/>
+                    <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding ngaybatdau}"/>
+                    <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding ngayketthuc}"/>
+                    <DataGridTextColumn Header="Ngày thêm" Binding="{Binding ngaythem}"/>
+                    <DataGridTextColumn Header="Ngày cập nhật" Binding="{Binding ngaycapnhat}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>

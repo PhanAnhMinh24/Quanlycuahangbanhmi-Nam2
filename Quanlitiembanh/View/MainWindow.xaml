@@ -1,0 +1,145 @@
+﻿<Window x:Class="Quanlitiembanh.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Quanlitiembanh"
+        mc:Ignorable="d"
+        xmlns:uc="clr-namespace:Quanlitiembanh.UserControlPAM"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        xmlns:media="clr-namespace:System.Windows.Media;assembly=PresentationCore"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Name="mainWindow"
+        DataContext="{StaticResource MainVM}"
+        Title="Tiệm bánh mì nhỏ xíu" Height="500" Width="600">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.Background>
+        <media:ImageBrush ImageSource="/Img/tiembanhmi.jpg" Stretch="Fill" Opacity="0.85"></media:ImageBrush>
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}" ></uc:ControlBarUC>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <TextBlock Text="Xin chào:"
+                       FontSize="17"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Right" Margin="0,2,-176,0" />
+            </Grid>
+            <Grid Grid.Column="1">
+                <TextBlock
+                       FontSize="17"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       x:Name="txtUsernameDisplay"
+                       HorizontalAlignment="Right"/>
+            </Grid>
+
+        </Grid>
+        <Grid Grid.Row="2" >
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0" >
+                <Button ToolTip="Hóa đơn" Height="100" Width="200" Command="{Binding BillWindow}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <materialDesign:PackIcon Kind="ReceiptTextCheckOutline" Height="33" Margin="-26,0,0,0" Width="42" VerticalAlignment="Center"  />
+                        </Grid>
+                        <Grid Grid.Column="1" >
+                            <TextBlock Margin="5,11,-26,-11">Hóa đơn</TextBlock>
+                        </Grid>
+                    </Grid>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Button ToolTip="Voucher" Height="100" Width="200" Command="{Binding VoucherWindow}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <materialDesign:PackIcon Kind="TicketPercent" Height="33" Margin="-26,0,0,0" Width="42" VerticalAlignment="Center"  />
+                        </Grid>
+                        <Grid Grid.Column="1" >
+                            <TextBlock Margin="5,11,-26,-11">Voucher</TextBlock>
+                        </Grid>
+                    </Grid>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Button ToolTip="Bánh mì" Height="100" Width="200"  Command="{Binding BakeryWindow}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <materialDesign:PackIcon Kind="Baguette" Height="33" Margin="-26,0,0,0" Width="42" VerticalAlignment="Center"  />
+                        </Grid>
+                        <Grid Grid.Column="1" >
+                            <TextBlock Margin="5,11,-26,-11">Bánh mì</TextBlock>
+                        </Grid>
+                    </Grid>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1" >
+                <Button ToolTip="Đăng xuất" Height="100" Width="200" Click="Button_Click">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <materialDesign:PackIcon Kind="Logout" Height="33" Margin="-26,0,0,0" Width="42" VerticalAlignment="Center"  />
+                        </Grid>
+                        <Grid Grid.Column="1" >
+                            <TextBlock Margin="5,11,-26,-11">Đăng xuất</TextBlock>
+                        </Grid>
+                    </Grid>
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

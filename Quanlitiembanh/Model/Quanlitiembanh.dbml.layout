@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Quanlitiembanh">
+  <DataContextMoniker Name="/QuanlitiembanhDataContext" />
+  <nestedChildShapes>
+    <classShape Id="125bb960-a4e5-44d8-b944-0c404938d029" absoluteBounds="3.5, 1, 2, 2.5401025390625005">
+      <DataClassMoniker Name="/QuanlitiembanhDataContext/hoadon" />
+      <nestedChildShapes>
+        <elementListCompartment Id="87a5e2e9-ce80-4e9c-ac64-e9cc2f4fc6b0" absoluteBounds="3.515, 1.46, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0fb54202-991c-4707-99da-f1827f74fcfd" absoluteBounds="1, 4.625, 2, 2.5401025390625005">
+      <DataClassMoniker Name="/QuanlitiembanhDataContext/voucher" />
+      <nestedChildShapes>
+        <elementListCompartment Id="068a335c-e583-4884-b57d-8904494e24a3" absoluteBounds="1.0150000000000001, 5.085, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="93faf0f1-59e5-4433-b846-a5165a95219d" absoluteBounds="0.75, 1, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/QuanlitiembanhDataContext/sanpham" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0e31cd74-5e01-4956-bd32-648001594ca2" absoluteBounds="0.765, 1.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fcb04699-ba2b-4fa0-bed1-fcb151d802e9" absoluteBounds="4.125, 4.875, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/QuanlitiembanhDataContext/user" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a5f8ddee-efd6-404f-a298-957233735cdc" absoluteBounds="4.1400000000000006, 5.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.90625 : 4.625); (2.90625 : 3.47520182291667); (3.5 : 3.47520182291667)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/QuanlitiembanhDataContext/voucher/voucher_hoadon" />
+      <nodes>
+        <classShapeMoniker Id="0fb54202-991c-4707-99da-f1827f74fcfd" />
+        <classShapeMoniker Id="125bb960-a4e5-44d8-b944-0c404938d029" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 2.17390055338542); (3.5 : 2.17390055338542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/QuanlitiembanhDataContext/sanpham/sanpham_hoadon" />
+      <nodes>
+        <classShapeMoniker Id="93faf0f1-59e5-4433-b846-a5165a95219d" />
+        <classShapeMoniker Id="125bb960-a4e5-44d8-b944-0c404938d029" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
